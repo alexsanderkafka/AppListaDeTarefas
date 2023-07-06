@@ -9,13 +9,23 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.listadetarefas.R;
+import com.example.listadetarefas.databinding.ActivityAdicionarTarefaBinding;
+import com.example.listadetarefas.databinding.ActivityMainBinding;
 
 public class AdicionarTarefaActivity extends AppCompatActivity {
+
+    private ActivityAdicionarTarefaBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adicionar_tarefa);
+
+        binding = ActivityAdicionarTarefaBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        setSupportActionBar(binding.toolbar);
+
     }
 
     @Override
