@@ -1,5 +1,6 @@
 package com.example.listadetarefas.activity;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.listadetarefas.adapter.TarefaAdapter;
 import com.example.listadetarefas.databinding.ActivityMainBinding;
+import com.example.listadetarefas.helper.DbHelper;
 import com.example.listadetarefas.helper.RecyclerItemClickListener;
 import com.example.listadetarefas.model.Tarefa;
 
@@ -46,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
 
         //Configurar o recycler
         recyclerView = findViewById(R.id.recyclerView);
+
+        DbHelper db = new DbHelper(getApplicationContext());
+        ContentValues cv = new ContentValues();
+        cv.put("nome", "Teste");
+        db.getWritableDatabase().insert("tarefas", null, cv);
 
         //Ecento de click
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(),
@@ -95,11 +102,13 @@ public class MainActivity extends AppCompatActivity {
         tarefaAdapter = new TarefaAdapter(listaTarefa);
 
         //configurar Recyclerview
+
+        /*
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayout.VERTICAL));
-        recyclerView.setAdapter(tarefaAdapter);
+        recyclerView.setAdapter(tarefaAdapter);*/
 
     }
 

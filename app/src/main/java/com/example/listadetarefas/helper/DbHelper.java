@@ -45,8 +45,10 @@ public class DbHelper extends SQLiteOpenHelper {
             Log.i("INFO DB", "Sucesso ao atualizar App");
         }
         catch (Exception e){
-            Log.i("INFO DB", "Erro ao criar a tabela " + e.getMessage());
+            Log.e("INFO DB", "Erro ao criar a tabela " + e.getMessage());
         }
 
     }
+
+
 }
