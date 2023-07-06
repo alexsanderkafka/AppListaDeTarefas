@@ -20,6 +20,7 @@ import com.example.listadetarefas.adapter.TarefaAdapter;
 import com.example.listadetarefas.databinding.ActivityMainBinding;
 import com.example.listadetarefas.helper.DbHelper;
 import com.example.listadetarefas.helper.RecyclerItemClickListener;
+import com.example.listadetarefas.helper.TarefaDAO;
 import com.example.listadetarefas.model.Tarefa;
 
 import android.widget.AdapterView;
@@ -49,12 +50,13 @@ public class MainActivity extends AppCompatActivity {
         //Configurar o recycler
         recyclerView = findViewById(R.id.recyclerView);
 
+        /*
         DbHelper db = new DbHelper(getApplicationContext());
         ContentValues cv = new ContentValues();
-        cv.put("nome", "Teste");
-        db.getWritableDatabase().insert("tarefas", null, cv);
+        cv.put("nome", "TesteTeste");
+        db.getWritableDatabase().insert("tarefas", null, cv);*/
 
-        //Ecento de click
+        //Evento de click
         recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(),
                 recyclerView,
                 new RecyclerItemClickListener.OnItemClickListener() {
@@ -89,26 +91,19 @@ public class MainActivity extends AppCompatActivity {
     public void carregarListaTarefas(){
 
         //Listar tarefas
-        Tarefa tarefa1 = new Tarefa();
-        tarefa1.setNomeTarefa("Ir ao mercado");
-        listaTarefa.add(tarefa1);
-
-        Tarefa tarefa2 = new Tarefa();
-        tarefa2.setNomeTarefa("Ir a feira");
-        listaTarefa.add(tarefa2);
+        TarefaDAO tarefaDAO = new TarefaDAO(getApplicationContext());
+        listaTarefa = tarefaDAO.listar();
 
 
         //Configurar um adapter
         tarefaAdapter = new TarefaAdapter(listaTarefa);
 
         //configurar Recyclerview
-
-        /*
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.addItemDecoration(new DividerItemDecoration(getApplicationContext(), LinearLayout.VERTICAL));
-        recyclerView.setAdapter(tarefaAdapter);*/
+        recyclerView.setAdapter(tarefaAdapter);
 
     }
 
